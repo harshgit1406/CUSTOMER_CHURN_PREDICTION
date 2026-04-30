@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import pickle
 import plotly.graph_objects as go
+import os
 
 # -------------------- PAGE CONFIG --------------------
 st.set_page_config(
@@ -45,10 +46,11 @@ div.stButton > button {
 """, unsafe_allow_html=True)
 
 # -------------------- LOAD MODEL --------------------
-model = pickle.load(open("model.pkl", "rb"))
-scaler = pickle.load(open("scaler.pkl", "rb"))
-model_columns = pickle.load(open("columns.pkl", "rb"))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+model = pickle.load(open(os.path.join(BASE_DIR, "model.pkl"), "rb"))
+scaler = pickle.load(open(os.path.join(BASE_DIR, "scaler.pkl"), "rb"))
+columns = pickle.load(open(os.path.join(BASE_DIR, "columns.pkl"), "rb"))
 # -------------------- TITLE --------------------
 st.title("🔮 Customer Churn Prediction Dashboard")
 
